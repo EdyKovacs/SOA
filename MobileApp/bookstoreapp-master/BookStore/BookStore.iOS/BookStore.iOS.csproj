@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B92AFD58-DA45-4EFA-ABDB-73269B41A620}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>BookStore.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>BookStore.iOS</AssemblyName>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer: paul.linca@yardi.com (8A63WPCMQA)</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>iOS Team Provisioning Profile: ro.linca.BookStore</CodesignProvision>
+    <MtouchLink>SdkOnly</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <None Include="Entitlements.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CustomRenderers\CustomEditorEntry.cs" />
+    <None Include="Info.plist" />
+    <Compile Include="CustomRenderers\ImageEntryRenderer.cs" />
+    <Compile Include="CustomRenderers\CustomFrameRenderer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>4.0.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>1.2.0.223</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\BookStore\BookStore.csproj">
+      <Project>{0EDFE768-7DE4-48EB-A503-D67FD91EAA56}</Project>
+      <Name>BookStore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\plusIcon%404x.png" />
+    <BundleResource Include="Resources\plusIcon%402x.png" />
+    <BundleResource Include="Resources\plusIcon.png" />
+    <BundleResource Include="Resources\add_icon.png" />
+    <BundleResource Include="Resources\add_icon%402x.png" />
+    <BundleResource Include="Resources\add_icon%403x.png" />
+    <BundleResource Include="Resources\back_arrow_icon.png" />
+    <BundleResource Include="Resources\back_arrow_icon%402x.png" />
+    <BundleResource Include="Resources\back_arrow_icon%403x.png" />
+    <BundleResource Include="Resources\book_active.png" />
+    <BundleResource Include="Resources\book_active%402x.png" />
+    <BundleResource Include="Resources\book_active%403x.png" />
+    <BundleResource Include="Resources\book.png" />
+    <BundleResource Include="Resources\book%402x.png" />
+    <BundleResource Include="Resources\book%403x.png" />
+    <BundleResource Include="Resources\cover_icon.png" />
+    <BundleResource Include="Resources\cover_icon%402x.png" />
+    <BundleResource Include="Resources\cover_icon%403x.png" />
+    <BundleResource Include="Resources\email_icon_active.png" />
+    <BundleResource Include="Resources\email_icon_active%402x.png" />
+    <BundleResource Include="Resources\email_icon_active%403x.png" />
+    <BundleResource Include="Resources\email_icon.png" />
+    <BundleResource Include="Resources\email_icon%402x.png" />
+    <BundleResource Include="Resources\email_icon%403x.png" />
+    <BundleResource Include="Resources\empty_state_icon.png" />
+    <BundleResource Include="Resources\empty_state_icon%402x.png" />
+    <BundleResource Include="Resources\empty_state_icon%403x.png" />
+    <BundleResource Include="Resources\journal_active.png" />
+    <BundleResource Include="Resources\journal_active%402x.png" />
+    <BundleResource Include="Resources\journal_active%403x.png" />
+    <BundleResource Include="Resources\journal.png" />
+    <BundleResource Include="Resources\journal%402x.png" />
+    <BundleResource Include="Resources\journal%403x.png" />
+    <BundleResource Include="Resources\lock_icon_selected.png" />
+    <BundleResource Include="Resources\lock_icon_selected%402x.png" />
+    <BundleResource Include="Resources\lock_icon_selected%403x.png" />
+    <BundleResource Include="Resources\lock_icon.png" />
+    <BundleResource Include="Resources\lock_icon%402x.png" />
+    <BundleResource Include="Resources\lock_icon%403x.png" />
+    <BundleResource Include="Resources\logo.png" />
+    <BundleResource Include="Resources\logo%402x.png" />
+    <BundleResource Include="Resources\logo%403x.png" />
+    <BundleResource Include="Resources\menu_icon.png" />
+    <BundleResource Include="Resources\menu_icon%402x.png" />
+    <BundleResource Include="Resources\menu_icon%403x.png" />
+    <BundleResource Include="Resources\paper_active.png" />
+    <BundleResource Include="Resources\paper_active%402x.png" />
+    <BundleResource Include="Resources\paper_active%403x.png" />
+    <BundleResource Include="Resources\paper.png" />
+    <BundleResource Include="Resources\paper%402x.png" />
+    <BundleResource Include="Resources\paper%403x.png" />
+    <BundleResource Include="Resources\remove_icon.png" />
+    <BundleResource Include="Resources\remove_icon%402x.png" />
+    <BundleResource Include="Resources\remove_icon%403x.png" />
+    <BundleResource Include="Resources\side_menu_arrow.png" />
+    <BundleResource Include="Resources\side_menu_arrow%402x.png" />
+    <BundleResource Include="Resources\side_menu_arrow%403x.png" />
+    <BundleResource Include="Resources\trash.png" />
+    <BundleResource Include="Resources\trash%402x.png" />
+    <BundleResource Include="Resources\trash%403x.png" />
+    <BundleResource Include="Resources\upload_icon.png" />
+    <BundleResource Include="Resources\upload_icon%402x.png" />
+    <BundleResource Include="Resources\upload_icon%403x.png" />
+    <BundleResource Include="Resources\user_icon.png" />
+    <BundleResource Include="Resources\user_icon%402x.png" />
+    <BundleResource Include="Resources\user_icon%403x.png" />
+    <BundleResource Include="Resources\OpenSans-Regular.ttf" />
+    <BundleResource Include="Resources\OpenSans-Bold.ttf" />
+    <BundleResource Include="Resources\OpenSans-Light.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomRenderers\" />
+  </ItemGroup>
+</Project>

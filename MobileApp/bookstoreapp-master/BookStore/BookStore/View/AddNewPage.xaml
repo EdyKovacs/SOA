@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    Title="Select type of publication"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BookStore.CustomViews"
+    xmlns:converters="clr-namespace:BookStore.Helpers"
+    x:Class="BookStore.View.AddNewPage"
+    x:Name="SelectionView"
+    BackgroundColor="White"
+    NavigationPage.BackButtonTitle="">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InvertBoolConverter x:Key="invertBool" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <AbsoluteLayout
+        Padding="16">
+        <ListView
+            x:Name="PublicationTypesList"
+            ItemsSource="{Binding Selections}"
+            ItemSelected="OnItemSelected"
+            AbsoluteLayout.LayoutBounds="0, 0, 1, 0.9"
+            AbsoluteLayout.LayoutFlags="All"
+            IsPullToRefreshEnabled="false"
+            SeparatorColor="Transparent"
+            HasUnevenRows="true"
+            VerticalScrollBarVisibility="Never"
+            HorizontalScrollBarVisibility="Never">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <local:ImageCheckBox
+                                ActiveFrameBorderColor="{Binding ActiveFrameBorderColor}"
+                                DefaultFrameBorderColor="{Binding DefaultFrameBorderColor}"
+                                IsActive="{Binding IsActive}"
+                                CheckBoxText="{Binding Text}"
+                                DefaultTextColor="{Binding DefaultTextColor}"
+                                ActiveTextColor="{Binding ActiveTextColor}"
+                                DefaultImageSource="{Binding DefaultImage}"
+                                ActiveImageSource="{Binding ActiveImage}"
+                                DefaultBackgroundColor="{Binding DefaultBackgroundColor}"
+                                ActiveBackgroundColor="{Binding ActiveBackgroundColor}"
+                                CheckBoxCommand="{Binding Path=BindingContext.SelectCommand, Source={x:Reference SelectionView}}"
+                                CheckBoxCommandParameter="{Binding .}"
+                                Margin="0, 15, 0, 15"
+                                VerticalOptions="StartAndExpand"
+                                HorizontalOptions="FillAndExpand">
+                            </local:ImageCheckBox>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button
+            x:Name="NextButton"
+            IsVisible="{Binding IsButtonVisible}"
+            BackgroundColor="{StaticResource PrimaryBlue}"
+            Text="Next"
+            Command="{Binding SelectionDoneCommand}"
+            TextColor="White"
+            AbsoluteLayout.LayoutBounds="0.95, 0.95, 1, 0.08"
+            AbsoluteLayout.LayoutFlags="All"
+            IsEnabled="{Binding IsBusy, Converter={StaticResource invertBool}}"/>
+    </AbsoluteLayout>
+</ContentPage>

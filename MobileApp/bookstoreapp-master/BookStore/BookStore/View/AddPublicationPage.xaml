@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BookStore.CustomViews"
+    x:Class="BookStore.View.AddPublicationPage"
+    BackgroundColor="White"
+    x:Name="ParentPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Save"
+            Command="{Binding SavePublicationCommand}"/>
+    </ContentPage.ToolbarItems>
+    <NavigationPage.TitleView>
+        <OnPlatform x:TypeArguments="View">
+            <OnPlatform.Android>
+                <Label
+                    Text="{Binding PageTitle}"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    TextColor="White"
+                    FontSize="18"
+                    Margin="0, 0, 20, 0"
+                    FontAttributes="Bold"
+                    MaxLines="1"
+                    WidthRequest="250">
+                </Label>
+            </OnPlatform.Android>
+            <OnPlatform.iOS>
+                <Label
+                    Text="{Binding PageTitle}"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    TextColor="White"
+                    FontSize="18"
+                    Margin="20, 0, 0, 0"
+                    FontAttributes="Bold"
+                    MaxLines="1"
+                    WidthRequest="250">
+                </Label>
+            </OnPlatform.iOS>
+        </OnPlatform>
+    </NavigationPage.TitleView>
+    <ScrollView>
+        <StackLayout
+            Padding="16, 32, 16, 32">
+            <local:ImagePicker
+                UploadText="{Binding Path=NewPublication.Type, StringFormat='Upload a {0} cover'}"
+                RemoveText="{Binding Path=NewPublication.Type, StringFormat='{0} cover uploaded.'}"
+                ImagePath="{Binding NewPublication.CoverImageSource, Mode=TwoWay}"
+                HeightRequest="151"
+                Margin="0, 0, 0, 20"/>
+            <Label
+                Text="TITLE"
+                FontSize="10"
+                FontFamily="{StaticResource PrimaryFontBold}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource StandardTextDarkGray}"/>
+            <Entry
+                x:Name="TitleEntry"
+                HeightRequest="44"
+                Margin="0, 0, 0, 20"
+                Text="{Binding NewPublication.Title}"
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                Placeholder="Write the title here..."
+                ReturnType="Next"
+                TextChanged="HandleTextChanged"/>
+            <Label
+                Text="AUTHOR"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource StandardTextDarkGray}"
+                FontSize="10"
+                FontFamily="{StaticResource PrimaryFontBold}"
+                IsVisible="{Binding BookPicked}"/>
+            <Entry
+                x:Name="AuthorEntry"
+                HeightRequest="44"
+                Margin="0, 0, 0, 20"
+                Text="{Binding NewPublication.Author}"
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                Placeholder="Write the author here..."
+                ReturnType="Next"
+                TextChanged="HandleTextChanged"/>
+            <Label
+                Text="GENRE"
+                FontSize="10"
+                FontFamily="{StaticResource PrimaryFontBold}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource StandardTextDarkGray}"/>
+            <Entry
+                x:Name="GenreEntry"
+                HeightRequest="44"
+                Margin="0, 0, 0, 20"
+                Text="{Binding NewPublication.Genre}"
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                Placeholder="Write the genre here..."
+                ReturnType="Next"
+                TextChanged="HandleTextChanged"/>
+            <Label
+                Text="DATE PUBLISHED"
+                FontSize="10"
+                FontFamily="{StaticResource PrimaryFontBold}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource StandardTextDarkGray}"/>
+            <DatePicker
+                x:Name="DatePublishedPicker"
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                HeightRequest="44"
+                Margin="0, 0, 0, 20"
+                Date="{Binding NewPublication.PublishedDate}"
+                PropertyChanged="HandleTextChanged"/>
+            <Label
+                Text="FIRST TIME PUBLISHED"
+                FontSize="10"
+                FontFamily="{StaticResource PrimaryFontBold}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource StandardTextDarkGray}"
+                IsVisible="{Binding JournalPicked}"/>
+            <DatePicker
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                HeightRequest="44"
+                Margin="0, 0, 0, 20"
+                Date="{Binding NewPublication.FirstPublishedDate}"
+                IsVisible="{Binding JournalPicked}"
+                PropertyChanged="HandleTextChanged"/>
+            <Label
+                Text="RECURRENCE"
+                FontSize="10"
+                FontFamily="{StaticResource PrimaryFontBold}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource StandardTextDarkGray}"
+                IsVisible="{Binding JournalPicked}"/>
+            <Picker
+                x:Name="RecurrencePicker"
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                HeightRequest="44"
+                Margin="0, 0, 0, 20"
+                SelectedItem="{Binding NewPublication.Recurrence}"
+                ItemsSource="{Binding RecurenceTypes}"
+                IsVisible="{Binding JournalPicked}"
+                SelectedIndexChanged="HandleTextChanged"/>
+            <Label
+                Text="FIRST CONFERENCE"
+                FontSize="10"
+                FontFamily="{StaticResource PrimaryFontBold}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource StandardTextDarkGray}"
+                IsVisible="{Binding PaperPicked}"/>
+            <Entry
+                x:Name="FirstConferenceEntry"
+                HeightRequest="44"
+                Margin="0, 0, 0, 20"
+                Text="{Binding NewPublication.FirstConference}"
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                Placeholder="Write the name of the conference here..."
+                IsVisible="{Binding PaperPicked}"
+                ReturnType="Next"
+                TextChanged="HandleTextChanged"/>
+            <Label
+                Text="CONFERENCE LOCATION"
+                FontSize="10"
+                FontFamily="{StaticResource PrimaryFontBold}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource StandardTextDarkGray}"
+                IsVisible="{Binding PaperPicked}"/>
+            <Entry
+                x:Name="ConferenceLocationEntry"
+                HeightRequest="44"
+                Margin="0, 0, 0, 20"
+                Text="{Binding NewPublication.ConferenceLocation}"
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                Placeholder="Write the location here..."
+                IsVisible="{Binding PaperPicked}"
+                ReturnType="Next"
+                TextChanged="HandleTextChanged"/>
+            <Label
+                Text="ABSTRACT"
+                FontSize="10"
+                FontFamily="{StaticResource PrimaryFontBold}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource StandardTextDarkGray}"
+                IsVisible="{Binding PaperPicked}"/>
+            <Editor
+                x:Name="AbstractEditor"
+                HeightRequest="44"
+                Margin="0, 0, 0, 20"
+                Text="{Binding NewPublication.Abstract}"
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                Placeholder="Describe the conference here..."
+                IsVisible="{Binding PaperPicked}"
+                TextChanged="HandleTextChanged"/>
+            <Label
+                Text="Add Conference Paper"
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource PrimaryBlue}"
+                IsVisible="{Binding JournalPicked}"
+                HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddPaperCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label
+                Text="CONFERENCE PAPERS"
+                FontSize="18"
+                FontFamily="{StaticResource PrimaryFontBold}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource StandardTextDarkGray}"
+                IsVisible="{Binding JournalPicked}"/>
+            <ListView
+                x:Name="PapersList"
+                ItemsSource="{Binding PaperTitles}"
+                IsVisible="{Binding JournalPicked}"
+                ItemSelected="OnItemSelected"
+                SeparatorVisibility="None"
+                HeightRequest="{Binding ListHeight}"
+                VerticalScrollBarVisibility="Never"
+                SizeChanged="HandleTextChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem
+                                    Text="Remove"
+                                    IsDestructive="true"
+                                    Command="{Binding Path=BindingContext.DeletePaperCommand, Source={x:Reference ParentPage}}"
+                                    CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
+                            <Label
+                                Text="{Binding Text}"
+                                VerticalOptions="Center"
+                                FontSize="16"
+                                FontFamily="{StaticResource PrimaryFont}"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label
+                Text="Add Reference"
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource PrimaryBlue}"
+                IsVisible="{Binding PaperPicked}"
+                HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddReferenceCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Entry
+                x:Name="NewReferenceEntry"
+                HeightRequest="44"
+                Margin="0, 0, 0, 20"
+                Text="{Binding NewReference.Text}"
+                FontSize="14"
+                FontFamily="{StaticResource PrimaryFont}"
+                Placeholder="New Reference..."
+                IsVisible="{Binding PaperPicked}"/>
+            <Label
+                Text="REFERENCES"
+                FontSize="18"
+                FontFamily="{StaticResource PrimaryFont}"
+                Margin="0, 0, 0, 8"
+                TextColor="{StaticResource StandardTextDarkGray}"
+                IsVisible="{Binding PaperPicked}"/>
+            <ListView
+                x:Name="ReferencesList"
+                ItemsSource="{Binding References}"
+                IsVisible="{Binding PaperPicked}"
+                ItemSelected="OnItemSelected"
+                SeparatorVisibility="None"
+                HeightRequest="{Binding ListHeight}"
+                VerticalScrollBarVisibility="Never"
+                SizeChanged="HandleTextChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem
+                                    Text="Remove"
+                                    IsDestructive="true"
+                                    Command="{Binding Path=BindingContext.DeleteReferenceCommand, Source={x:Reference ParentPage}}"
+                                    CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
+                            <Label
+                                Text="{Binding Text}"
+                                VerticalOptions="Center"
+                                FontSize="16"
+                                FontFamily="{StaticResource PrimaryFont}"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

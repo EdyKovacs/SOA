@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BookStore.View.HomePage"
+    xmlns:converters="clr-namespace:BookStore.Helpers"
+    x:Name="ParentPage"
+    Title="Home"
+    BackgroundColor="White">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InvertBoolConverter x:Key="invertBool" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            IconImageSource="add_icon"
+            Command="{Binding AddPublicationCommand}"
+            IsEnabled="{Binding IsBusy, Converter={StaticResource invertBool}}"/>
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout>
+        <ListView
+            x:Name="PublicationList"
+            ItemsSource="{Binding Publications}"
+            SelectedItem="{Binding SelectedPublication, Mode=TwoWay}"
+            ItemSelected="OnItemSelected"
+            HasUnevenRows="true"
+            SeparatorColor="Transparent"
+            VerticalOptions="Fill"
+            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+            AbsoluteLayout.LayoutFlags="All"
+            IsPullToRefreshEnabled="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem
+                                Text="Delete"
+                                IsDestructive="true"
+                                Command="{Binding Path=BindingContext.DeletePublicationCommand, Source={x:Reference ParentPage}}"
+                                CommandParameter="{Binding .}"
+                                IconImageSource="trash.png"/>
+                        </ViewCell.ContextActions>
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16, 12, 16, 12">
+                            <Frame
+                                CornerRadius="5"
+                                Margin="0"
+                                Padding="0"
+                                IsClippedToBounds="True"
+                                HeightRequest="128"
+                                WidthRequest="98"
+                                HasShadow="True"
+                                OutlineColor="White">
+                                <Image
+                                    Source="{Binding Path=CoverImageSource, Mode=TwoWay}"
+                                    Aspect="AspectFill"/>
+                            </Frame>
+                            <RelativeLayout
+                                Padding="10, 0, 0, 0">
+                                <Label
+                                    RelativeLayout.YConstraint="{ConstraintExpression
+                                        Type=RelativeToParent,
+                                        Property=Height,
+                                        Factor=0.1}"
+                                    TextColor="{StaticResource StandardTextGray}"
+                                    Text="{Binding Title}"
+                                    FontSize="18"
+                                    FontFamily="{StaticResource PrimaryFontBold}"
+                                    FontAttributes="Bold"
+                                    MaxLines="1"
+                                    WidthRequest="200"/>
+                                <Label
+                                    RelativeLayout.YConstraint="{ConstraintExpression
+                                        Type=RelativeToParent,
+                                        Property=Height,
+                                        Factor=0.3}"
+                                    TextColor="{StaticResource StandardTextGray}"
+                                    Text="{Binding Author}"
+                                    FontSize="14"
+                                    FontFamily="{StaticResource PrimaryFontLight}"
+                                    MaxLines="1"
+                                    WidthRequest="200"/>
+                                <Label
+                                    RelativeLayout.YConstraint="{ConstraintExpression
+                                        Type=RelativeToParent,
+                                        Property=Height,
+                                        Factor=0.7}"
+                                    BackgroundColor="{StaticResource GenreBoxGray}"
+                                    WidthRequest="75"
+                                    HeightRequest="24"
+                                    Text="{Binding Genre}"
+                                    TextColor="{StaticResource GenreTextGray}"
+                                    FontSize="10"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    FontFamily="{StaticResource PrimaryFont}"/>
+                            </RelativeLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            IsVisible="{Binding IsListEmpty}">
+            <Image
+                Source="empty_state_icon"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+            <Label
+                Text="No available books"
+                TextColor="{StaticResource StandardTextGray}"
+                FontSize="18"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                FontFamily="{StaticResource PrimaryFont}"/>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

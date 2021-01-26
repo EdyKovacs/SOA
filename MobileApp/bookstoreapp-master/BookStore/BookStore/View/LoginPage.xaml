@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BookStore.View.LoginPage"
+    xmlns:local="clr-namespace:BookStore.CustomViews"
+    xmlns:converters="clr-namespace:BookStore.Helpers"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InvertBoolConverter x:Key="invertBool" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout
+        Orientation="Vertical"
+        Padding="0, 74, 0, 119"
+        VerticalOptions="CenterAndExpand"
+        HorizontalOptions="CenterAndExpand">
+        <Image
+            Source="logo.png"
+            HeightRequest="125"/>
+        <local:ImageEntry
+            x:Name="EmailEntry"
+            Placeholder="Email"
+            WidthRequest="328"
+            HeightRequest="44"
+            Margin="0, 65, 0, 12"
+            Text="{Binding Email}"
+            FontSize="19"
+            FontFamily="{StaticResource PrimaryFont}"
+            Keyboard="Email"
+            ReturnType="Next"
+            Image="email_icon"
+            ImageHeight="12"
+            ImageWidth="18"/>
+        <local:ImageEntry
+            x:Name="PasswordEntry"
+            Placeholder="Password"
+            WidthRequest="328"
+            HeightRequest="44"
+            Margin="0, 12, 0, 12"
+            IsPassword="True"
+            Text="{Binding Password}"
+            FontSize="19"
+            FontFamily="{StaticResource PrimaryFont}"
+            Image="lock_icon"
+            ImageHeight="16"
+            ImageWidth="12"/>
+        <local:ImageEntry
+            x:Name="ConfirmPasswordEntry"
+            Placeholder="Confirm Password"
+            WidthRequest="328"
+            HeightRequest="44"
+            Margin="0, 12, 0, 12"
+            IsPassword="True"
+            IsVisible="{Binding NeedsAccount}"
+            Text="{Binding ConfirmedPassword}"
+            FontSize="19"
+            FontFamily="{StaticResource PrimaryFont}"
+            Image="lock_icon"
+            ImageHeight="16"
+            ImageWidth="12"/>
+        <Button
+            BackgroundColor="{StaticResource PrimaryBlue}"
+            Text="{Binding LoginButtonText}"
+            TextColor="White"
+            WidthRequest="328"
+            HeightRequest="44"
+            Margin="0, 36, 0, 16"
+            CornerRadius="6"
+            Command="{Binding LoginCommand}"
+            FontSize="19"
+            FontFamily="{StaticResource PrimaryFont}"
+            IsEnabled="{Binding IsBusy, Converter={StaticResource invertBool}}"/>
+        <StackLayout
+            Orientation="Horizontal"
+            HorizontalOptions="Center">
+            <Label
+                Text="{Binding UserAccountStatusLabelText}"
+                TextColor="Black"
+                FontSize="17"
+                FontFamily="{StaticResource PrimaryFont}"/>
+            <Label
+                Text="{Binding Path=SwitchButtonText, StringFormat='{0}.'}"
+                TextColor="{StaticResource PrimaryBlue}"
+                FontSize="17"
+                FontFamily="{StaticResource PrimaryFont}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding SwitchModeCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

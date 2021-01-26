@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:BookStore.Helpers"
+    x:Class="BookStore.View.LogoutPage"
+    BackgroundColor="{StaticResource PrimaryBlue}"
+    IconImageSource="menu_icon.png"
+    Title="User">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InvertBoolConverter x:Key="invertBool" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+        <Image
+            Source="user_icon.png"
+            HeightRequest="63"
+            WidthRequest="63"
+            HorizontalOptions="Center"
+            Margin="0, 0, 0, 5"/>
+        <Label
+            Text="{Binding UserEmail}"
+            TextColor="White"
+            HorizontalOptions="Center"
+            WidthRequest="200"
+            HorizontalTextAlignment="Center"/>
+        <Button
+            Text="Logout"
+            TextColor="{StaticResource PrimaryBlue}"
+            BackgroundColor="White"
+            HeightRequest="44"
+            WidthRequest="160"
+            Margin="0, 20"
+            Command="{Binding LogoutCommand}"
+            IsEnabled="{Binding IsBusy, Converter={StaticResource invertBool}}"/>
+    </StackLayout>
+</ContentPage>
